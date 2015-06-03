@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+   <head>
+        <!--<link rel="stylesheet" type="text/css" href="index.css">-->
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <meta charset="UTF-8">
+        <!-- IOS WEB APP CONFIGURATION -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-title" content="Lamp">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="initial-scale=1">
+        <meta name="format-detection" content="telephone=no">
+        <!-- ICONS -->
+
+      <title>Garage Remote</title>
+   </head>
+   <script>
+      var xmlHttp = null;
+
+      function pushTheButton(state)
+      {
+         var url = "/index.lua?state=" + state;
+
+         xmlHttp = new XMLHttpRequest();
+         xmlHttp.onreadystatechange = processRequest;
+         xmlHttp.open("GET", url, true);
+         xmlHttp.send( null );
+      }
+
+      function processRequest()
+      {
+         if(xmlHttp.readyState == 0)
+         {
+            document.getElementById("label").innerHTML = 'Initalizing...';
+            document.getElementById("label").className = "initalizing";
+         }
+         else if(xmlHttp.readyState == 1)
+         {
+            document.getElementById("label").innerHTML = 'Server connection established.';
+            document.getElementById("label").className = "connection";
+         }
+         else if(xmlHttp.readyState == 2)
+         {
+            document.getElementById("label").innerHTML = 'Request received.';
+            document.getElementById("label").className = "received";
+         }
+         else if(xmlHttp.readyState == 3)
+         {
+            document.getElementById("label").innerHTML = 'Processing request.';
+            document.getElementById("label").className = "processing";
+         }
+         else if(xmlHttp.readyState == 4)
+         {
+            if(xmlHttp.status == 200)
+            {
+               document.getElementById("label").innerHTML = xmlHttp.responseText;
+               document.getElementById("label").className = "ok";
+               sleep(300);
+               document.getElementById("label").className = "start";
+            }
+            else if(xmlHttp.status == 400)
+            {
+               document.getElementById("label").innerHTML = 'Bad request.';
+               document.getElementById("label").className = "bad";
+            }
+         }
+      }
+      function sleep(milliseconds){
+         var start = new Date().getTime();
+         for (var i = 0; i < 1e7; i++)
+         {
+            if ((new Date().getTime() - start) > milliseconds)
+            {
+               break;
+            }
+         }
+      }
+   </script>
+   <body bgcolor="#777777">
+   <div id="remote">
+      <div id="label" class="start"></div>
+      <a href="#" onclick="pushTheButton('open');" class="button button-1">
+          <span>Open</span>
+      </a>
+      <a href="#" onclick="pushTheButton('close'); " class="button button-2">
+          <span>Close</span>
+      </a>
+      <div id="spacer"></div>
+    <a href="#" onclick="pushTheButton('startup'); " class="button button-3">
+        <span>Startup Test</span>
+    </a>
+   </div>
+   </body>
+</html>
+
