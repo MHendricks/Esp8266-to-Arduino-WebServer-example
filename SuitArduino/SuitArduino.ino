@@ -1,4 +1,5 @@
-/* Listenes to SoftwareSerial for specific command strings. 
+/* Listen's to SoftwareSerial for specific command strings
+and blinks a led differently depending on what command was sent.
 
 Code mostly extracted from this web page.
 http://stackoverflow.com/questions/5697047/convert-serial-read-into-a-useable-string-using-arduino
@@ -19,9 +20,9 @@ void setup()
   pinMode(led, OUTPUT);
  // Open serial communications and wait for port to open:
   Serial.begin(9600);
-   while (!Serial) {
+  /*while (!Serial) {
     ; // wait for serial port to connect. Needed for Leonardo only
-  }
+  }*/
 
   // Start each software serial port
   portOne.begin(9600);
@@ -29,6 +30,8 @@ void setup()
 
 void loop()
 {
+  // Contrived example of how to read the data from software serial
+  // and trigger something on the arduino.
    if (readData()) {
      if (!strcmp(inData, "open")) {
        Serial.println("Opening the Back");
@@ -38,6 +41,15 @@ void loop()
        digitalWrite(led, LOW);
      } else if (strcmp(inData, "startup") == 0) {
        Serial.println("Testing Startup sequences.");
+       blinkLed(5, 250, 100, led);
+       blinkLed(10, 50, 50, led);
+       blinkLed(1, 500, 0, led);
+     } else if (strcmp(inData, "stepAway") == 0) {
+       Serial.println("Step Away from the suit.");
+       blinkLed(20, 100, 100, led);
+     } else if (strcmp(inData, "unibeam") == 0) {
+       Serial.println("Firing Unibeam.");
+       blinkLed(20, 25, 25, led);
      } else {
        Serial.print("Unknown:");
        Serial.print(inData);
@@ -45,6 +57,15 @@ void loop()
      }
    }
    delay(100);
+}
+
+void blinkLed(int times, int onTime, int offTime, int ledPin) {
+   for (int i=0; i < times; i++) {
+     digitalWrite(ledPin, HIGH);
+     delay(onTime);
+     digitalWrite(ledPin, LOW);
+     delay(offTime);
+   } 
 }
 
 bool readData() {

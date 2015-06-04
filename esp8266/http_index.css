@@ -1,25 +1,14 @@
 html, body {
-	height:100%;
 	margin: 0;
-	overflow: hidden;
+    height:100%;
 }
 
 body {
 
 	text-align: center;
-	background-color: black;
+	background-color: #666;
 	min-height: 100%;
 	color: black;
-}
-
-
-#remote {
-	background-color: #666;
-	width: 90%;
-	border-radius: 30px;
-	margin: 5% 5% 0;
-	height: 90%;
-	padding: 0;
 }
 
 #spacer {
@@ -31,11 +20,10 @@ body {
 	margin-left: 30px;
 }
 
-
 .button {
 	display: inline-block;
 	width: 43%;
-	margin: 20px 0 30px;
+	margin: 10px 0 10px;
 	border-style: none;
 	color: rgba(192, 192, 192, 0.5);
 	text-decoration: none;
@@ -49,50 +37,21 @@ body {
 	position: relative;
 }
 
-
-.button-1 {
+.button-left {
 	float: left;
 	margin-left: 5%;
 }
 
-.button-2 {
+.button-right {
 	float: right;
 	margin-right: 5%;
 }
 
-.button-3 {
+.button-full {
 	margin-left: 5%;
 	margin-right: 5%;
     width: 90%;
 }
-
-
-
-.button span {
-
-
-}
-
-
-
-.button:hover span {
-
-
-}
-
-
-.button:active, .button:focus {
-
-
-}
-
-
-
-.button:active span {
-
-
-}
-
 
 #label {
 	font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
@@ -109,13 +68,8 @@ body {
 	position: relative;
 }
 
-#label.start {
-
-}
-
-#label.initalizing {
-
-}
+#label.start {}
+#label.initalizing {}
 
 #label.connection {
 	background-color: orange;
@@ -143,9 +97,7 @@ body {
     }
     
     .button {
-        font-size: 3em;
-        height: 80px;
-        line-height: 80px;
+        font-size: 2em;
         -moz-box-shadow: 0 5px rgba(0, 0, 0, 0.25);
         box-shadow: 0 5px rgba(0, 0, 0, 0.25);
     }

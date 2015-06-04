@@ -20,7 +20,7 @@ function Set (list)
 end
 
 return function (connection, args)
-    local valid = Set {"open", "close", "startup"}
+    local valid = Set {"open", "close", "startup", "stepAway", "unibeam"}
     if valid[args.state] then
         pushTheButton(connection, args.state)
     else
