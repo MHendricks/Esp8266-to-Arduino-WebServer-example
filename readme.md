@@ -9,10 +9,10 @@ Original nodemcu-httpserver: https://github.com/marcoskirsch/nodemcu-httpserver
 
 # Wiring
 
-ESP----UNO
-TX-----10
-RX-----11
-GND----GND
+ - ESP----UNO
+ - TX-----10
+ - RX-----11
+ - GND----GND
 
 Provide 3.3v 250ma+ to the ESP's vcc. **NOTE** Unless you are using something like the Adafruit Huzzah that explicitly says so, the ESP is not 5v tolerant. The ESP requires more power than most arduino's can provide so I wouldn't use the 3.3v from the arduino.
 
