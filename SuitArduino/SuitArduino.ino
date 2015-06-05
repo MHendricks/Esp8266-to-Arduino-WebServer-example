@@ -8,7 +8,7 @@ http://stackoverflow.com/questions/5697047/convert-serial-read-into-a-useable-st
 char inData[20]; // Allocate some space for the string
 char inChar=-1; // Where to store the character read
 byte index = 0; // Index into array; where to store the character
-int led = 13;
+int led = 13; 
 
 #include <SoftwareSerial.h>
 // software serial #1: TX = digital pin 10, RX = digital pin 11
@@ -18,7 +18,14 @@ void setup()
 {
   // initialize the digital pin as an output.
   pinMode(led, OUTPUT);
+  blinkLed(5, 250, 100, led);
+  
+  // Large delay seems to be required to allow the ESP time to boot before
+  // the arduino starts listening over serial.
+  delay(5000);
  // Open serial communications and wait for port to open:
+ // Serial is being used for debugging it is not needed for ESP communication
+ // though you could probably use hardware serial for communication.
   Serial.begin(9600);
   /*while (!Serial) {
     ; // wait for serial port to connect. Needed for Leonardo only
