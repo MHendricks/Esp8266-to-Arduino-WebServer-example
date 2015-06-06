@@ -2,7 +2,8 @@ An example of using ESP8266 as a web server and access point. The ESP is connect
 to an Arduino via Serial. Clicking links in the web page triggers specific code on
 the arduino.
 
-https://youtu.be/OSIEU3Mgy-E
+https://www.youtube.com/watch?v=dLvsWGkq9Mc
+
 A video showing a early version of the server. After recording I fixed the stylesheet.
 
 Original nodemcu-httpserver: https://github.com/marcoskirsch/nodemcu-httpserver
